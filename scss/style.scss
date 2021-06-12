@@ -1,0 +1,306 @@
+// Variables
+
+$title-active-color: hsl(238, 29%, 16%);
+$accent-color: hsl(14, 88%, 65%);
+$title-color: hsl(237, 12%, 33%);
+$accordion-text: hsl(240, 6%, 50%);
+$divider-color: hsl(240, 5%, 91%);
+
+$violet-bg: hsl(273, 75%, 66%);
+$blue-bg: hsl(240, 73%, 65%);
+
+// CSS reset
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+// resetting the font size to 10px = 1rem
+}
+
+body {
+  background-image: linear-gradient(to bottom,$violet-bg, $blue-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-size: 1.2rem;
+  color: $accordion-text;
+  font-weight: 400;
+
+}
+
+
+.container {
+  border: 1px dotted #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rem 3rem;
+
+  @media only screen and (min-width: 900px) {
+    padding: 0 6rem;
+  }
+  
+}
+
+main {
+  // outline: dotted red 10px;
+  min-width: 300px;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 7rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.5rem;
+  box-shadow: -0.2rem 1.5rem 3rem rgba(17, 7, 44, 0.562);
+
+  @media only screen and (min-width: 900px) {
+    flex-direction: row;
+    max-width: 1000px;
+    min-width: unset;
+    minheight: 500px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7rem 10rem;
+    background-image: url(/images/illustration-woman-online-desktop.svg), url(/images/bg-pattern-desktop.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: -80px 70px, -580px -300px  ;
+    background-size: 470px 360px, 970px 950px;
+    position: relative;
+    flex: 1;
+
+  }
+}
+
+.image-container {
+  background-image: url(/images/bg-pattern-mobile.svg);
+  background-repeat: no-repeat;
+  background-position: 3rem 10rem;
+  height: 23rem;
+  width: 27rem;
+  margin-top: -17.7rem;
+  margin-right: 2rem;
+
+  @media only screen and (min-width: 900px) {
+  background-image: none;
+  background-repeat: unset;
+  background-position: unset;
+  height: unset;
+  width: unset;
+  margin-top: unset;
+  margin-right: unset;
+  }
+}
+
+.image--main {
+  @media only screen and (min-width: 900px) {
+    display: none;
+  }
+}
+
+.image-box {
+  display: none;
+
+  @media only screen and (min-width: 900px) {
+    display: block;
+    position: absolute;
+    left: -94px;
+    top: 205px;
+    transition: ease-in-out 1s;
+
+    &:hover {
+      transform: rotate3d(1, 0, 0, 45deg);
+    }
+   
+
+
+  }
+}
+
+
+.accordion-container {
+  padding: 0 3rem;
+ 
+  @media only screen and (min-width: 900px) {
+    width: 50% ;
+    padding: 0 .5rem;
+    
+  }
+  
+}
+
+h1 {
+  color: $title-active-color;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+
+  @media only screen and (min-width: 900px) {
+    text-align: left;
+    margin-bottom: 3.8rem;
+    letter-spacing: 1px;
+
+
+  }
+  
+}
+
+
+
+.question {
+  color: $title-color;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  transition: all .4s;
+
+  &::after {
+    content: url(/images/icon-arrow-down.svg);
+    transition: all .4s ease;
+  }
+
+  &:hover {
+    color:$accent-color;
+  }
+
+  @media only screen and (min-width: 900px) {
+    font-size: 1.4rem;
+  }
+
+  
+}
+
+.answer {
+  margin-right: 2rem;
+  line-height: 1.4;
+  transition: all .3s;
+}
+
+hr.divider {
+  background-color: $divider-color;
+  border: 0;
+  height: 1px;
+  margin: 2rem 0;
+}
+
+
+
+
+// accordion toggle
+
+
+input {
+  opacity: 0;
+  position: absolute;
+  z-index:-1;
+}
+
+input + .question + .answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+input:checked + .question {
+  color: hsl(238, 29%, 16%);
+  font-weight: 700;
+}
+
+input:checked + .question:hover {
+  color: $accent-color;
+}
+
+input:checked + .question::after {
+  transform: rotate(-180deg);
+}
+
+input:checked + .question + .answer {
+  margin-top: 1.1rem;
+  max-height: 9rem;
+  opacity:1;
+}
+
+// Media queries 
+
+
+
+
+// Accordion 
+
+// .accordion .question {
+//   border-bottom: 2px solid $divider-color;
+  
+// }
+
+
+
+// input {
+//   display: none;
+// }
+
+// label {
+//   display: block;    
+//   padding: 1rem 3rem;
+//   margin: 0 0 1rem 0;
+//   cursor: pointer;
+//   color: $title-active-color;
+//   font-weight: 700;
+//   transition: ease .5s;
+//   position: relative;
+// }
+
+// label::after {
+// 	content: url(/images/icon-arrow-down.svg);
+// 	font-weight: bold;
+// 	font-size: 22px;
+// 	position: absolute;
+// 	right: 10px;
+// 	top: 6px;
+// }
+
+// input:checked + label::after {
+// 	content: url(/images/icon-arrow-down.svg);
+//  transform: rotate(180deg);
+// }
+
+// label:hover {
+//   cursor: pointer;
+//   transform: translateY(-3px);
+//   font-weight: 700;
+//   font-size: 1.4rem ;
+//   color: $arrow-color;
+// }
+
+// label:visited {
+//   color: $arrow-color;
+// }
+
+// label:active {
+//   font-weight: 900;
+// }
+
+// .content {
+//   padding: 10px 25px;
+//   margin: 0 0 1px 0;
+// }
+
+// input + label + .content {
+//   display: none;
+// }
+
+// input:checked + label + .content {
+//   display: block;
+// }
